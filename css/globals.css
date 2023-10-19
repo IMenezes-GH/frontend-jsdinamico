@@ -1,0 +1,67 @@
+:root{
+    --bg-color: #FDFDFD;
+    --txt-color: #080808;
+
+    font-family: 'Inter', 'Montserrat', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root{
+        --bg-color: #2d2c35;
+        --txt-color: #FDFDFD;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+    background-image: url('https://images.unsplash.com/photo-1528604891270-c2d9c3d1fc0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Z3JlZW5lcnl8fHx8fHwxNjk3NzI2NTc3&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080');
+    background-size: cover;
+
+}
+
+#root{
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    place-content: center center;
+}
+
+input[type="text"], input[type="password"]{
+
+    font-size: 1.1rem;
+    appearance: none;
+    padding: .25rem;
+    border: none;
+    border-bottom: 1px solid rgba(150, 148, 148, 0.6);
+
+}
+
+button {
+    cursor: pointer;
+    appearance: none;
+    
+    background-color: #83ce46;
+    color: white;
+    font-weight: 600;
+
+    border: 1px solid transparent;
+    border-radius: .1rem;
+    
+    padding: .25rem;
+    min-width: 7.25rem;
+
+    &:hover{
+        background-color: #288f47;
+    }
+}
+
+a{
+    color:#288f47;
+}

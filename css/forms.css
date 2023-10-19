@@ -1,0 +1,49 @@
+.wrapper{
+    /* background: linear-gradient(rgba(6, 6, 22, 0.5), rgba(7, 6, 6, 0.486)); */
+    background-color: white;
+    border-radius: 0.2rem;
+
+    & section:nth-of-type(2){
+        height: fit-content;
+        padding: 0 4rem 2rem;
+    }
+}
+
+#form-toggle{
+
+    min-height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+
+    & button{
+        background-color: white;
+        width: 100%;
+
+        font-weight: 400;
+
+        &#login-form-toggle{
+            color: black;
+        }
+        &#sign-form-toggle{
+            background-color: rgb(219, 213, 213);
+            color: gray;
+        }
+    }
+}
+
+form#login-form{
+    max-width: 40vw;
+    min-height: 40vh;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+    gap: .75rem;
+    
+}
+
+form#login-form h1,h2,h3{
+    font-weight: 500;
+}
