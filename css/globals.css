@@ -93,8 +93,12 @@ button {
     min-width: 7.25rem;
     /* min-height: 1.3rem; */
 
-    &:hover{
+    &:hover:not(:disabled){
         background-color: #288f47;
+    }
+
+    &:disabled{
+        background-color: rgb(175, 174, 174);
     }
 }
 

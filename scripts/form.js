@@ -30,7 +30,7 @@ const renderRoot = async (index=0) => {
             
                     <div class="password-container"><input id="password" name="password" type="password" maxlength="24" placeholder="Digite sua Senha*"><span role="button" onclick=passwordToggle(this) class="eye"></span></div>      
                     <div class="password-container"><input id="password-repeat" name="password-repeat" type="password" maxlength="24" placeholder="Repita sua senha*"><span role="button" class="eye" onclick=passwordToggle(this)></span></div>
-                    <button type="submit">Criar sua conta</button>
+                    <button id="submit" type="submit">Criar sua conta</button>
                     <output id="output"></output>
                 </form>
             </section>
@@ -52,7 +52,7 @@ const renderRoot = async (index=0) => {
                 <div class="password-container"><input id="password" name="password" type="password" maxlength="26" placeholder="Senha"><span role="button" class="eye" onclick=passwordToggle(this)></span></div>
                 <label for=""><input name="connect-checkbox" type="checkbox"> Manter conectado</label>
                 <a href="./register.html">Esqueceu sua senha?</a>
-                <button type="submit">Login</button>
+                <button id="submit" type="submit">Login</button>
                 <output id="output"></output>
             </form>
         </section>
@@ -84,8 +84,11 @@ const renderRoot = async (index=0) => {
     
     const Components = [LoginFragment, RegisterFragment];
     root.appendChild(Components[index]);
+
+    // CADASTRO ============================
     const form = document.forms[0];
     form.onsubmit = async (ev) => {
+
         form.elements.output.innerText = '';
         ev.preventDefault();
 
@@ -95,8 +98,22 @@ const renderRoot = async (index=0) => {
             password: form.elements.password.value
         }
         
+        form.elements.name.disabled = true;
+        form.elements.username.disabled = true;
+        form.elements.password.disabled = true;
+        form.elements.submit.disabled = true;
+        document.body.style.cursor = 'wait';
+        
         const request = await register(data);
+        
         form.elements.output.innerText = request.message;
+        document.body.style.cursor = 'inherit';
+
+        form.elements.name.disabled = true;
+        form.elements.username.disabled = true;
+        form.elements.password.disabled = true;
+        form.elements.submit.disabled = true;
+        form.reset();
     };
 }
 
