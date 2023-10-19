@@ -16,11 +16,11 @@ const renderRoot = async (index=0) => {
                     <h2>Cadastro</h2>
                     
                
-                    <input required id="name" name="name" type="text" placeholder="Seu nome completo*" maxlength="12"/>
-                    <input required id="username" name="username" type="text" placeholder="Nome de usuário*" maxlength="12"/>
+                    <input required id="name" name="name" type="text" placeholder="Seu nome completo*" maxlength="40"/>
+                    <input required id="username" name="username" type="text" placeholder="Nome de usuário*" maxlength="15"/>
             
-                    <div class="password-container"><input required id="password" name="password" type="password" maxlength="24" placeholder="Digite sua Senha*"><span role="button" class="eye"></span></div>      
-                    <div class="password-container"><input required id="password-repeat" name="password-repeat" type="password" maxlength="24" placeholder="Repita sua senha*"><span role="button" class="eye"></span></div>
+                    <div class="password-container"><input required id="password" name="password" type="password" minlength="8" maxlength="24" placeholder="Digite sua Senha*"><span role="button" class="eye"></span></div>      
+                    <div class="password-container"><input required id="password-repeat" name="password-repeat" type="password" minlength="8" maxlength="24" placeholder="Repita sua senha*"><span role="button" class="eye"></span></div>
                     <button id="submit" type="submit">Criar sua conta</button>
                     <output id="output"></output>
                 </form>
@@ -39,8 +39,8 @@ const renderRoot = async (index=0) => {
             <form id="login-form">
                 <h2>Bem-vindo de volta!</h2>
                     
-                <input required id="username" name="username" type="text" placeholder="Nome de usuário" maxlength="12"/>
-                <div class="password-container"><input required id="password" name="password" type="password" maxlength="26" placeholder="Senha"><span role="button" class="eye"></span></div>
+                <input required id="username" name="username" type="text" placeholder="Nome de usuário" maxlength="15"/>
+                <div class="password-container"><input required id="password" name="password" type="password" minlength="8" maxlength="26" placeholder="Senha"><span role="button" class="eye"></span></div>
                 <label for=""><input name="connect-checkbox" type="checkbox"> Manter conectado</label>
                 <a href="./register.html">Esqueceu sua senha?</a>
                 <button id="submit" type="submit">Login</button>
