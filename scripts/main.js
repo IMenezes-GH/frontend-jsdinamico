@@ -5,7 +5,3 @@ const passwordToggle = (el) => {
 
     field.type = field.type === 'password' ? 'text' : 'password'; 
 }
-
-export const test = () => {
-    console.log('test')
-}
