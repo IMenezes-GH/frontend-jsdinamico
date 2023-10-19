@@ -1,14 +1,13 @@
-const register = async (data) => {
+export const register = async (data) => {
     const response = await fetch('https://backend-jsdinamico.vercel.app/user', {
         method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
+        accept: "*/*",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     });
 
-    return response.json();
+    const message = await response.json();
+    return message;
 }
-

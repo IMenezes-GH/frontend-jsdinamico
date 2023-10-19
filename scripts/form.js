@@ -1,6 +1,5 @@
+import { register } from "./api.js";
 const root = document.getElementById("root");
-
-
 
 const formToggle = (el, callback) => {
 
@@ -12,7 +11,7 @@ const formToggle = (el, callback) => {
     }
 }
 
-const renderRoot = (index=0) => {
+const renderRoot = async (index=0) => {
     root.replaceChildren();
     const Register = 
     `
@@ -22,7 +21,7 @@ const renderRoot = (index=0) => {
             </section>
             <section>
 
-                <form id="login-form" action="">
+                <form id="login-form" onsubmit="test">
                     <h2>Cadastro</h2>
                     
                
@@ -46,7 +45,7 @@ const renderRoot = (index=0) => {
         </section>
         <section>
 
-            <form id="login-form" action="">
+            <form id="login-form" onsubmit="test(this)">
                 <h2>Bem-vindo de volta!</h2>
                     
                 <input id="username" name="username" type="text" placeholder="Nome de usuário" maxlength="12"/>
@@ -81,10 +80,23 @@ const renderRoot = (index=0) => {
             renderRoot(1);
         }
     })})
-
-
+    
     const Components = [LoginFragment, RegisterFragment];
     root.appendChild(Components[index]);
+
+    const form = document.forms[0];
+    form.onsubmit = async (ev) => {
+        ev.preventDefault();
+
+        const data = {
+            name: form.elements.name.value,
+            username: form.elements.username.value,
+            password: form.elements.password.value
+        }
+        
+        const request = await register(data);
+        console.log(request);
+    };
 }
 
 renderRoot();
