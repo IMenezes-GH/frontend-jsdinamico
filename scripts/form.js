@@ -16,11 +16,11 @@ const renderRoot = async (index=0) => {
                     <h2>Cadastro</h2>
                     
                
-                    <input id="name" name="name" type="text" placeholder="Seu nome completo*" maxlength="12"/>
-                    <input id="username" name="username" type="text" placeholder="Nome de usuário*" maxlength="12"/>
+                    <input required id="name" name="name" type="text" placeholder="Seu nome completo*" maxlength="12"/>
+                    <input required id="username" name="username" type="text" placeholder="Nome de usuário*" maxlength="12"/>
             
-                    <div class="password-container"><input id="password" name="password" type="password" maxlength="24" placeholder="Digite sua Senha*"><span role="button" class="eye"></span></div>      
-                    <div class="password-container"><input id="password-repeat" name="password-repeat" type="password" maxlength="24" placeholder="Repita sua senha*"><span role="button" class="eye"></span></div>
+                    <div class="password-container"><input required id="password" name="password" type="password" maxlength="24" placeholder="Digite sua Senha*"><span role="button" class="eye"></span></div>      
+                    <div class="password-container"><input required id="password-repeat" name="password-repeat" type="password" maxlength="24" placeholder="Repita sua senha*"><span role="button" class="eye"></span></div>
                     <button id="submit" type="submit">Criar sua conta</button>
                     <output id="output"></output>
                 </form>
@@ -39,8 +39,8 @@ const renderRoot = async (index=0) => {
             <form id="login-form">
                 <h2>Bem-vindo de volta!</h2>
                     
-                <input id="username" name="username" type="text" placeholder="Nome de usuário" maxlength="12"/>
-                <div class="password-container"><input id="password" name="password" type="password" maxlength="26" placeholder="Senha"><span role="button" class="eye"></span></div>
+                <input required id="username" name="username" type="text" placeholder="Nome de usuário" maxlength="12"/>
+                <div class="password-container"><input required id="password" name="password" type="password" maxlength="26" placeholder="Senha"><span role="button" class="eye"></span></div>
                 <label for=""><input name="connect-checkbox" type="checkbox"> Manter conectado</label>
                 <a href="./register.html">Esqueceu sua senha?</a>
                 <button id="submit" type="submit">Login</button>
@@ -92,16 +92,18 @@ const renderRoot = async (index=0) => {
     const form = document.forms[0];
     form.onsubmit = async (ev) => {
 
+        ev.preventDefault();
+        
         if (form.id === 'register-form'){
 
             form.elements.output.innerText = '';
-            ev.preventDefault();
             
             const data = {
                 name: form.elements.name.value,
                 username: form.elements.username.value,
                 password: form.elements.password.value
             }
+            if (!data.name || !data.username || !data.password) return // Impede request se dados não tiverem sido preenchidos
         
             form.elements.name.disabled = true;
             form.elements.username.disabled = true;
@@ -123,30 +125,39 @@ const renderRoot = async (index=0) => {
         if (form.id === 'login-form'){
          
             form.elements.output.innerText = '';
-            ev.preventDefault();
-            
+
             const data = {
                 username: form.elements.username.value,
                 password: form.elements.password.value
             }
-        
+            if (!data.username || !data.password) return // Impede request se dados não tiverem sido preenchidos
+
             form.elements.username.disabled = true;
             form.elements.password.disabled = true;
             form.elements.submit.disabled = true;
-            
+
             document.body.style.cursor = 'wait';
             
             const request = await login(data);
         
             document.body.style.cursor = 'inherit';
 
-            form.elements.username.disabled = true;
-            form.elements.password.disabled = true;
-            form.elements.submit.disabled = true;
+            form.elements.username.disabled = false;
+            form.elements.password.disabled = false;
+            form.elements.submit.disabled = false;
             form.reset();
 
-            const url = window.location.href.split('index.html')[0] + 'user.html';
-            window.location.href = url;
+            sessionStorage.setItem('username', data.username);
+            console.log(request);
+            sessionStorage.setItem('auth', request.message.accessToken);
+
+            if (!data.username || !data.password || !request.response.ok){
+                form.elements.output.innerText = request.message.message;
+            }
+            else {
+                const url = window.location.href.split('index.html')[0] + 'user.html';
+                window.location.href = url;
+            }
         }
     };
 }
