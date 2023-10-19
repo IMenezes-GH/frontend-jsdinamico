@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/globals.css">
+    <link rel="stylesheet" href="./css/forms.css">
+    <script src="./scripts/form.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div class="wrapper">
+            <section>
+                <div id="form-toggle"><button id="login-form-toggle">Login</button><button id="sign-form-toggle">Cadastro</button></div>
+            </section>
+            <section>
+
+                <form id="login-form" action="">
+                    <h2>Cadastro</h2>
+                    
+               
+                    <input id="name" name="name" type="text" placeholder="Seu nome completo*" maxlength="12"/>
+                    <input id="username" name="username" type="text" placeholder="Nome de usuário*" maxlength="12"/>
+            
+                    <div class="password-container"><input id="password" name="password" type="password" maxlength="24" placeholder="Digite sua Senha (mín 8, máx 24)*"><span role="button" onclick=passwordToggle(this) class="eye"></span></div>      
+                    <div class="password-container"><input id="password-repeat" name="password-repeat" type="password" maxlength="24" placeholder="Digite sua senha novamente*"><span role="button" class="eye" onclick=passwordToggle(this)></span></div>
+                    <button type="submit">Criar sua conta</button>
+        
+                </form>
+            </section>
+        </div>
+
+    </div>
+</body>
+</html>

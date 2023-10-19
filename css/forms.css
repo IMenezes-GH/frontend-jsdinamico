@@ -2,19 +2,33 @@
     /* background: linear-gradient(rgba(6, 6, 22, 0.5), rgba(7, 6, 6, 0.486)); */
     background-color: white;
     border-radius: 0.2rem;
+    
+    min-height: fit-content;
+    min-width: fit-content;
 
+    max-height: 90vh;
+    max-width: 90vw;
+
+    margin: auto;
+
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+
+    
     & section:nth-of-type(2){
-        height: fit-content;
-        padding: 0 4rem 2rem;
+        
+        padding: 0 2.5rem;
+        display: flex;
     }
 }
 
 #form-toggle{
 
+    /* margin-bottom: 1.5rem; */
     min-height: 2.5rem;
+
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
 
     & button{
         background-color: white;
@@ -22,10 +36,10 @@
 
         font-weight: 400;
 
-        &#login-form-toggle{
+        &#active{
             color: black;
         }
-        &#sign-form-toggle{
+        &:not(#active){
             background-color: rgb(219, 213, 213);
             color: gray;
         }
@@ -33,14 +47,11 @@
 }
 
 form#login-form{
-    max-width: 40vw;
-    min-height: 40vh;
-    display: flex;
 
+    display: flex;
+    margin: 0 auto;
     flex-direction: column;
     justify-content: space-evenly;
-    
-    gap: .75rem;
     
 }
 
