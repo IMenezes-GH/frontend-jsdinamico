@@ -1,31 +1,24 @@
 const root = document.getElementById("root");
 
-const formToggle = (el) => {
+
+
+const formToggle = (el, callback) => {
 
     if (el.name === 'login-toggle'){
-        renderRoot(0);
+        callback(0);
     }
     if (el.name === 'cadastro-toggle'){
-        renderRoot(1);
+        callback(1);
     }
-
-}
-
-const passwordToggle = (el) => {
-
-    const field = el.parentElement.firstChild;
-    el.classList.toggle('closed');
-
-    field.type = field.type === 'password' ? 'text' : 'password'; 
 }
 
 const renderRoot = (index=0) => {
-
+    root.replaceChildren();
     const Register = 
     `
     <div class="wrapper">
             <section>
-                <div id="form-toggle"><button onclick="formToggle(this)" name="login-toggle">Login</button><button id="active" name="cadastro-toggle">Cadastro</button></div>
+                <div id="form-toggle"><button name="login-toggle">Login</button><button id="active" name="cadastro-toggle">Cadastro</button></div>
             </section>
             <section>
 
@@ -49,7 +42,7 @@ const renderRoot = (index=0) => {
     `
     <div class="wrapper">
         <section>
-                <div id="form-toggle"><button id="active" name="login-toggle">Login</button><button onclick="formToggle(this)" name="cadastro-toggle">Cadastro</button></div>
+                <div id="form-toggle"><button id="active" name="login-toggle">Login</button><button name="cadastro-toggle">Cadastro</button></div>
         </section>
         <section>
 
@@ -65,10 +58,33 @@ const renderRoot = (index=0) => {
         </section>
     </div>    
     `
+    const LoginFragment = document.createElement('div')
+    LoginFragment.innerHTML = Login
 
-    const Components = [Login, Register];
+    LoginFragment.querySelectorAll('#form-toggle button').forEach((el) => {el.addEventListener('click', (ev) => {
+        if (el.name === 'login-toggle'){
+            renderRoot(0);
+        }
+        if (el.name === 'cadastro-toggle'){
+            renderRoot(1);
+        }
+    })})
 
-    root.innerHTML = Components[index];
+    const RegisterFragment = document.createElement('div')
+    RegisterFragment.innerHTML = Register
+
+    RegisterFragment.querySelectorAll('#form-toggle button').forEach((el) => {el.addEventListener('click', (ev) => {
+        if (el.name === 'login-toggle'){
+            renderRoot(0);
+        }
+        if (el.name === 'cadastro-toggle'){
+            renderRoot(1);
+        }
+    })})
+
+
+    const Components = [LoginFragment, RegisterFragment];
+    root.appendChild(Components[index]);
 }
 
 renderRoot();

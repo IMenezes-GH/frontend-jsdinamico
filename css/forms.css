@@ -1,3 +1,7 @@
+#root > div {
+    margin: auto;
+}
+
 .wrapper{
     /* background: linear-gradient(rgba(6, 6, 22, 0.5), rgba(7, 6, 6, 0.486)); */
     background-color: white;
