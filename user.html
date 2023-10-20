@@ -8,11 +8,12 @@
     <script type="module" src="./scripts/api.js"></script>
     <script type="module" src="./scripts/main.js"></script>
     <script type="module" src="./scripts/user.js"></script>
+    <script type="module" src="./scripts/dialog.js"></script>
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/globals.css">
     <link rel="stylesheet" href="./css/user.css">
     <link rel="stylesheet" href="./css/animations.css">
-    
+    <link rel="stylesheet" href="./css/dialog.css">   
 </head>
 <body>
     <div id="root">
@@ -50,7 +51,7 @@
 
         <main>
             <menu class="task-menu">
-                <li><span class="write-img" role="button"></span><span>Novo</span></li>
+                <li role="button" id="task-create-button"><span class="write-img" role="button"></span><span>Novo</span></li>
                 <li><span class="select-img" role="button"></span><span>Selecionar</span></li>
                 <li><span class="trash-img" role="button"></span><span>Apagar</span></li>
                 <li><span class="github-img" role="link" href=""></span><a href="https://github.com/IMenezes-GH/frontend-jsdinamico">Código-fonte</a></li>
@@ -64,7 +65,24 @@
         <aside class="" id="task-container">
             <section><span id="open-aside-btn" role="button" width="40px" alt=""></span></section>
         </aside>
-        
-    </div>
-</body>
-</html>
+    
+        <dialog id="new-task-dialog" >
+            <header><button id="new-task-close" class="dialog-close">x</button></header>
+            <h1>Criar uma nova tarefa</h1>
+            <form id="create-task-dialog-form">
+                <input required type="text" placeholder="Título*">
+                <textarea name="description" id="" cols="30" rows="4" placeholder="Descrição da tarefa"></textarea>
+                    <label for="due-date">Prazo:<input id="due-date" type="date" ></label>
+                    <fieldset form="create-task-dialog-form">
+                        <div id="add-todo-container">
+                            <input id="add-todo-text" type="text" placeholder="Lista de objetivos dessa tarefa"><button id="add-todo-button" type="button">+</button>
+                        </div>
+                        <ol id="todo-list"></ol>
+                    </fieldset>
+                    <button type="submit" id="submit-task">Criar tarefa</button>
+                </form>
+            </dialog>
+            
+        </div>
+    </body>
+    </html>

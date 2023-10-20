@@ -1,0 +1,122 @@
+#new-task-dialog{
+
+    background-color: #121313;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: .2rem;
+    box-shadow: 2px 6px 10px 6px rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    padding-top: 0;
+
+    max-height: 70vh;
+    max-width: 40vw;
+
+    overflow-x: hidden;
+
+    z-index: 200;
+
+    margin: auto;
+
+    &>header {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0;
+        padding-top: 1rem;
+    }
+
+    &>form{
+        min-height: 20vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    & label {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        & > input{
+            flex-grow: 1;
+        }
+    }
+
+    & ol {
+        
+        & li{
+            color: var(--txt-accent);
+            
+            display: flex;
+            
+            align-items: center;
+            margin-left: 1rem;
+            padding: .15rem 0;
+            
+            font-size: 1.2rem;
+
+            gap: .5rem;
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.363);
+
+        &:nth-of-type(2n){
+            background-color: rgba(0, 0, 0, 0.363);
+        }
+        }
+    }
+
+
+    & input, textarea, span, label, legend{
+        color: rgba(255, 255, 255, 0.473);
+    }
+    & textarea {
+        padding: 1rem;
+        resize: vertical;
+    }
+
+    &::backdrop{
+        background: radial-gradient(rgba(0, 0, 0, 0.856), rgba(0, 0, 0, 0.295));
+    }
+}
+
+#add-todo-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    align-items: center;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+}
+
+#add-todo-text{
+    flex-grow: 1;
+}
+
+#add-todo-button{
+    padding: 0;
+    
+    min-width: initial;
+    width: 2rem;
+    height: 2rem;
+
+    align-self: flex-end;
+    font-size: 1.6rem;
+}
+
+button.dialog-close{
+    background-color: transparent;
+
+    min-width: initial;
+    max-width: fit-content;
+
+    margin: 0;
+    padding: 0;
+    color: var(--txt-accent);
+
+    &:hover{
+        color: white;
+        background-color: transparent;
+    }
+}

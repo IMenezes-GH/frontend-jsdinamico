@@ -34,8 +34,9 @@ body{
     justify-content: center;
 }
 
-input[type="text"], input[type="password"]{
+input[type="text"], textarea, input[type="password"], input[type="date"]{
 
+    background-color: transparent;
     appearance: none;
 
     padding: .25rem 0;
@@ -45,6 +46,50 @@ input[type="text"], input[type="password"]{
 
     &:focus{
         outline: 1px solid green;
+    }
+
+}
+
+textarea{
+    border: 1px solid rgb(177, 185, 194);
+}
+
+
+input[type="checkbox"]{
+    appearance: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.473);
+    border-radius: .1rem;
+    
+    box-sizing: border-box;
+
+    background-color: transparent;
+    width: 1rem;
+    height: 1rem;
+
+    cursor: pointer;
+    &::before{
+        content: "";
+        width: 0.1rem;
+        height: 0.1rem;
+    }
+
+    &:checked{
+        background-color: var(--txt-accent);
+        border: 2px solid var(--txt-accent);
+        
+        &::before{
+            content: "✓";
+            font-family: 'permanent marker';
+            position: relative;
+
+            background-image: url('../assets/');
+            color: #121313;
+
+            font-weight: 900;
+            bottom: 0.2em;
+            left: -0.05em;
+        }
     }
 }
 
@@ -83,8 +128,8 @@ button {
     cursor: pointer;
     appearance: none;
     
-    background-color: #83ce46;
-    color: white;
+    background-color: var(--txt-accent);
+    color: #121313;
     font-weight: 600;
 
     border: 1px solid transparent;
@@ -95,7 +140,8 @@ button {
     /* min-height: 1.3rem; */
 
     &:hover:not(:disabled){
-        background-color: #288f47;
+        background-color: #2d583a;
+        color:white;
     }
 
     &:disabled{
