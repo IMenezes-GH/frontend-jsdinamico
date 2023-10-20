@@ -4,7 +4,7 @@
 
 .wrapper{
     /* background: linear-gradient(rgba(6, 6, 22, 0.5), rgba(7, 6, 6, 0.486)); */
-    background-color: white;
+    background-color: #121313;
     border-radius: 0.2rem;
     
     margin: auto;
@@ -56,6 +56,11 @@ form{
 
 form h1,h2,h3{
     font-weight: 500;
+    color: var(--txt-accent);
+}
+
+label, input[type="text"], input[type="password"] {
+    color: white;
 }
 
 output{
