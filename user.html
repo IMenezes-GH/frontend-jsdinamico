@@ -57,53 +57,26 @@
                 <li><span class="github-img" role="link" href=""></span><a href="https://github.com/IMenezes-GH/frontend-jsdinamico">Código-fonte</a></li>
             </menu>
             <section id="tasks-main">
-                <article class="task">
-                    <h2 class="task-title">Tarefa 1 <span>#01</span></h2>
-                    <hr>
-                    <p class="task-description">Realizar a tarefa 1</p>
-
-                    <p class="task-creation-date">Data de criação: <span class="txt-accent">00/00/2000</span> às <span class="txt-accent">10:00:00</span></p>
-                    <p class="task-due-date">Data de prazo: <span class="txt-accent">01/00/2000</span> às <span class="txt-accent"> 10:00:00</span></p>
-
-                    <p class="task-objetivos">Objetivos:</p>
-                    <ul>
-                        <li><input type="checkbox">item 1</li>
-                        <li><input type="checkbox">item 2</li>
-                        <li><input type="checkbox">item 3</li>
-                    </ul>
-                </article>
-                <article class="task">
-                    <h1>Tarefa 2</h1>
-                    <p>Comprar banana</p>
-                    <ul>
-                        <li><input type="checkbox"> item 1</li>
-                        <li><input type="checkbox"> item 2</li>
-                        <li><input type="checkbox"> item 3</li>
-                    </ul>
-                </article>
-                <article class="task">
-                    <h1>Tarefa 3</h1>
-                    <p>Comprar calopsita</p>
-                    <ul>
-                        <li><input type="checkbox"> item 1</li>
-                        <li><input type="checkbox"> item 2</li>
-                        <li><input type="checkbox"> item 3</li>
-                    </ul>
-                </article>
             </section>
         </main>
     
     
         <aside class="" id="task-container">
             <section><span id="open-aside-btn" role="button" width="40px" alt=""></span></section>
+            <section class="tasks-list">
+                <ul id="aside-task-list">
+                    
+
+                </ul>
+            </section>
         </aside>
     
         <dialog id="new-task-dialog" >
             <header><button id="new-task-close" class="dialog-close">x</button></header>
             <h1>Criar uma nova tarefa</h1>
             <form id="create-task-dialog-form">
-                <input required type="text" placeholder="Título*">
-                <textarea name="description" id="" cols="30" rows="4" placeholder="Descrição da tarefa"></textarea>
+                <input required id="title" type="text" placeholder="Título*">
+                <textarea name="description" id="description" cols="30" rows="4" placeholder="Descrição da tarefa"></textarea>
                     <label for="due-date">Prazo:<input id="due-date" type="date" ></label>
                     <fieldset form="create-task-dialog-form">
                         <div id="add-todo-container">

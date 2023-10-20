@@ -1,3 +1,10 @@
+export const taskState = {
+    taskLength: 0,
+    taskDone: 0,
+    taskPending: 0
+}
+
+
 export const register = async (data) => {
    
     const response = await fetch('https://backend-jsdinamico.vercel.app/user', {

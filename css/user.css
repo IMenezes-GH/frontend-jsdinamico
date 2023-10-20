@@ -97,6 +97,9 @@ h1, h2, h3, p {
 
 /* ASIDE DE TASKS -------------------------------------- */
 #task-container{
+
+    overflow-y: auto;
+    overflow-x: hidden;
     
     position: absolute;
     right: 0;
@@ -132,6 +135,38 @@ h1, h2, h3, p {
         }
     }
 
+    & > .tasks-list{
+
+        display: none;
+        flex-direction: column;
+
+        width: 100%;
+        padding: 3% 4%;
+
+        
+        & ul {
+            list-style-type: '➤';
+        
+        }
+        & li {
+            
+            padding: .55rem 0 .55rem 0.5rem;
+            color: white;
+
+            scroll-behavior: smooth;
+            scroll
+            
+            & > * {
+                cursor: pointer;
+                color: var(--txt-accent);
+            }
+
+            &:nth-of-type(2n){
+                background-color: #6664640c;
+            }
+        }
+    }
+
     &.open{
 
         min-width: 60vw;
@@ -143,6 +178,9 @@ h1, h2, h3, p {
                 background-image: url('../assets/aside-close.svg');
             }
        
+        }
+        & > .tasks-list{
+            display: flex;
         }     
     }
 }
@@ -187,7 +225,7 @@ h1, h2, h3, p {
     flex-direction: row;
     gap: 1rem;
 
-    /* overflow-x: scroll; */
+    overflow-x:auto;
     
     .task{
         background-color: #222020;
