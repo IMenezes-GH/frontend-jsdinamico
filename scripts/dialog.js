@@ -1,7 +1,7 @@
 // CREATE TASK DIALOG ================================================
 
-import { taskState } from "./api.js";
-import { renderPlot } from "./user.js";
+import { taskState, postUserTask } from "./api.js";
+import { renderStats } from "./user.js";
 
 const createTaskDialog = document.getElementById("new-task-dialog");
 const createTaskForm = document.getElementById("create-task-dialog-form");
@@ -48,21 +48,29 @@ const appendTODO = () => {
 }
 
 addTodoButton.onclick = () => {appendTODO()}
-createTaskForm.onsubmit = (ev) => {
+createTaskForm.onsubmit = async (ev) => {
     ev.preventDefault();
 
     const title = ev.target.querySelector("#title").value;
     const description = ev.target.querySelector("#description").value;
+    const creation_date = new Date();
     const due_date = ev.target.querySelector("#due-date").value;
     const todos = ev.target.querySelectorAll('li');
     
+    const task = {
+        title,
+        description,
+        type: 'normal',
+        to_do: []
+    }
+
     const tarefa =
     `
     <h2 class="task-title">${title} <span>${taskState.taskLength}</span></h2>
     <hr>
     <p class="task-description">${description}</p>
     
-    <p class="task-creation-date">Data de criação: <span class="txt-accent">${new Date().toLocaleDateString()}</span> às <span class="txt-accent">${new Date().toLocaleTimeString()}</span></p>
+    <p class="task-creation-date">Data de criação: <span class="txt-accent">${creation_date.toLocaleDateString()}</span> às <span class="txt-accent">${new Date().toLocaleTimeString()}</span></p>
     <p class="task-due-date">Data de prazo: <span class="txt-accent">${due_date}</span></p>
                 
     <p class="task-objetivos">Objetivos:</p>
@@ -83,10 +91,16 @@ createTaskForm.onsubmit = (ev) => {
     article.innerHTML = tarefa;
     const ulTarefa = article.querySelector('ul');
     todos.forEach((el) => {
+        const checked = el.firstChild.checked;
+        const objective = el.lastChild.innerText;
+
         ulTarefa.appendChild(el);
+        task.to_do.push({objective, checked})
     })
     
     
+    task.to_do = JSON.stringify(task.to_do)
+
     tasksMain.appendChild(article);
     asidetaskList.appendChild(li);
                 
@@ -95,6 +109,7 @@ createTaskForm.onsubmit = (ev) => {
     taskState.taskLength += 1;
     taskState.taskPending += 1;
 
-    renderPlot();
+    await postUserTask(task);
+    renderStats();
 }
             

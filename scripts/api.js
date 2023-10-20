@@ -36,3 +36,25 @@ export const login = async (data) => {
     const message = await response.json();
     return {message, response};
 }
+
+export const postUserTask = async (task) => {
+
+    const username = sessionStorage.getItem("username");
+    const token = sessionStorage.getItem("auth");
+
+    console.log(JSON.stringify(task))
+
+    const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}/tasks`, {
+        method: 'POST',
+        accept: "*/*",
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(task)
+    })
+
+    const tasksData = await response.json();
+    console.log(tasksData);
+    return tasksData;
+}
