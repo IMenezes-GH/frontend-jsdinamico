@@ -3,8 +3,7 @@
 }
 
 .wrapper{
-    /* background: linear-gradient(rgba(6, 6, 22, 0.5), rgba(7, 6, 6, 0.486)); */
-    background-color: #121313;
+    background-color: #121313 !important;
     border-radius: 0.2rem;
     
     margin: auto;
