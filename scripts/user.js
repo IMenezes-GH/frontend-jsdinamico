@@ -64,6 +64,8 @@ const userdata = await fetchUserData();
 const tarefas = await fetchUserTasks();
 const user = userdata[0];
 
+document.title = `${user.name} | Minhas tarefas`;
+
 export const renderTasks = () => {
     tarefas.forEach((val) => {
 
@@ -76,7 +78,7 @@ export const renderTasks = () => {
             completed: val.completed,
             to_do: val.to_do
         })
-        
+
         task.completed ? taskState.taskDone += 1 : taskState.taskPending += 1;
 
         taskmain.appendChild(task.renderArticle());
