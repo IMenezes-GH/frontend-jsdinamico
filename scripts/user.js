@@ -69,7 +69,7 @@ document.title = `${user.name} | Minhas tarefas`;
 export const renderTasks = () => {
  
     if (!Array.isArray(tarefas)) return;
-    tarefas.foreach((val) => {
+    tarefas.forEach((val) => {
 
         const task = new Task(
             {
