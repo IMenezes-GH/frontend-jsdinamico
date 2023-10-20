@@ -67,7 +67,9 @@ const user = userdata[0];
 document.title = `${user.name} | Minhas tarefas`;
 
 export const renderTasks = () => {
-    tarefas.forEach((val) => {
+ 
+    if (!Array.isArray(tarefas)) return;
+    tarefas.foreach((val) => {
 
         const task = new Task(
             {
