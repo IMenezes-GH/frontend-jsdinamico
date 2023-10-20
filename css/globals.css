@@ -24,6 +24,8 @@ body{
     background-image: url('https://images.unsplash.com/photo-1528604891270-c2d9c3d1fc0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Z3JlZW5lcnl8fHx8fHwxNjk3NzI2NTc3&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080');
     background-size: cover;
 
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 #root{
