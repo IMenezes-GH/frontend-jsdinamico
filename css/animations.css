@@ -25,10 +25,10 @@
 }
 
 .slide-left-right{
-    animation: slide-left-right 2s ease-out 1s 1 backwards;
+    animation: slide-left-right 2s ease-out var(--delay) 1 backwards;
 }
 .opacity-0-to-100{
-    animation: opacity-0-to-100 2s ease-in-out .8s 1 backwards;
+    animation: opacity-0-to-100 2s ease-in-out var(--delay) 1 backwards;
 }
 
 .slide-lr-op-0-100{

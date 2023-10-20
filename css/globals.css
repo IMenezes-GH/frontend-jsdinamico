@@ -1,6 +1,7 @@
 :root{
     --bg-color: #FDFDFD;
     --txt-color: #080808;
+    --txt-accent: #5ADD8E;
 
     font-family: 'Inter', 'Montserrat', sans-serif;
 }
@@ -104,4 +105,8 @@ button {
 
 a{
     color:#288f47;
+}
+
+.txt-accent{
+    color: #5ADD8E;
 }
