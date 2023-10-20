@@ -6,7 +6,7 @@ const renderRoot = async (index=0) => {
     root.replaceChildren();
     const Register = 
     `
-    <div class="wrapper">
+    <div class="form-wrapper">
             <section>
                 <div id="form-toggle"><button name="login-toggle">Login</button><button id="active" name="cadastro-toggle">Cadastro</button></div>
             </section>
