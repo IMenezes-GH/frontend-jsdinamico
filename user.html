@@ -3,18 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuário</title>
+    <title>Placehold | Minhas tarefas</title>
+    <script src="./scripts/plotly-2.26.0.min.js" charset="utf-8"></script>
     <script type="module" src="./scripts/api.js"></script>
     <script type="module" src="./scripts/main.js"></script>
     <script type="module" src="./scripts/user.js"></script>
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/globals.css">
     <link rel="stylesheet" href="./css/user.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    
 </head>
 <body>
     <div id="root">
-        <div><h1>Bem vindo, <span class="name"></span></h1></div>
-        <p class="username"></p>
+     
+        <header>
+            <div>
+                <h1><span class="slide-lr-op-0-100">Bem vindo, <span class="name"></span></span><a href="./logout.html">Logout</a></h1>
+                
+                <section class="stats-section">
+                    
+                    <div>
+                        <p class="slide-lr-op-0-100" style="--delay:1s">Usuário: <span class="username"></span></p>
+                        <p class="slide-lr-op-0-100" style="--delay:1.5s">Você criou: <span class="task-length"></span> tarefas.</p>
+                        <p class="slide-lr-op-0-100" style="--delay:2.0s">Você tem: <span class="task-length-pending"></span> tarefas pendentes.</p>
+                        <p class="slide-lr-op-0-100" style="--delay:2.5s">Você concluiu: <span class="task-length-done"></span> tarefas.</p>
+                    </div>
+                    <div id="graph" style="width:450px;height:450px;"></div>
+                </section>
+
+            </div>
+            <div id="block"></div> <!-- NÃO PREENCHER-->
+        </header>
+
+        <main>
+            <menu class="task-menu">
+                <li><span class="write-img" role="button"></span><span>Novo</span></li>
+                <li><span class="select-img" role="button"></span><span>Selecionar</span></li>
+                <li><span class="trash-img" role="button"></span><span>Apagar</span></li>
+            </menu>
+            <section id="tasks-main">
+                <h1>Tarefas:</h1>
+            </section>
+        </main>
+    
+    
+        <aside class="" id="task-container">
+            <section><span id="open-aside-btn" role="button" width="40px" alt=""></span></section>
+        </aside>
+        
     </div>
 </body>
 </html>

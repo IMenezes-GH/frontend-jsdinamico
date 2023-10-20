@@ -1,3 +1,178 @@
 h1, h2, h3, p {
     color: white;
+    font-size: 180%;
 }
+
+#root{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    background-image: url('../assets/green_peaks.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 -35px;
+
+    & header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        & h1 {
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-around;
+
+            &>:a{
+                font-size: .5rem;
+            }
+        }
+
+        &>:first-child{
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 1rem;
+
+            gap: 1rem;
+
+            &>.stats-section {
+                display: flex;
+                flex-direction: row-reverse;
+                align-content: center;
+                justify-content: center;
+                align-self: end;
+
+                &>:first-child{
+                    align-self: center;
+                    text-shadow: 2px 3px 1px black;
+                }
+            }
+
+        }
+
+        &>#block{
+            height: 100%;
+            width: 9vw;
+            max-width: 10vw;
+        }
+    }
+
+    & main{
+        display: grid;
+        grid-template-rows: 1fr 4fr;
+    }
+}
+
+/* ASIDE DE TASKS -------------------------------------- */
+#task-container{
+    
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    background-color: rgb(15, 15, 15);
+    height: 100vh;
+
+    min-width: 2vw;
+    max-width: 5vw;
+    z-index: 100;
+
+    border-left: 1px solid rgba(122, 134, 122, 0.404);
+    box-shadow: -3px 2px 4px 2px rgba(0,0,0,0.5);
+    transition: all 1s ease;
+
+    &>:first-child{
+        background-color: rgb(19, 20, 19);
+        border-bottom: 1px solid rgba(128, 128, 128, 0.158);
+        width: 100%;
+
+        display: flex;
+        justify-content: flex-start;
+
+        &> #open-aside-btn{
+            background-image: url('../assets/aside-open.svg');
+            background-size: contain;
+            
+            width: 2.25rem;
+            height: 2.25rem;
+
+            cursor: pointer;
+        }
+    }
+
+    &.open{
+
+        min-width: 60vw;
+        max-width: 70vw;
+
+
+        &>:first-child{
+            &> #open-aside-btn{
+                background-image: url('../assets/aside-close.svg');
+            }
+       
+        }     
+    }
+}
+
+/* MENU DE BAIXO ======================= */
+.task-menu{
+    display: flex;
+    height: fit-content;
+
+    padding: .25rem 0 .25rem 1rem;
+    align-self: self-end;
+    gap: .5rem;
+
+    list-style-type: none;
+    border-top: 4px solid green;
+    /* border-bottom: 2px solid green; */
+    background-color: rgb(222, 248, 235);
+
+
+    &>li{
+        cursor: pointer;
+        display: flex;
+        align-content: center;
+
+        padding-right: .7rem;
+        border-right: 2px solid black;
+
+        &>span:last-child{
+            margin: auto;
+        }
+    }
+}
+
+#tasks-main{
+    width: 100%;
+    background-color: rgb(32, 36, 37);
+
+    resize: vertical;
+
+    &>*{
+        margin-left: 2.5%;
+    }
+}
+
+span[role="button"] {
+    display: inline-block;
+    background-size: contain;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .45rem;
+
+    &.write-img{
+        background-image: url('../assets/write.svg');
+
+    }
+    &.trash-img{
+        background-image: url('../assets/trash.svg');
+    }
+
+    &.select-img{
+        background-image: url('../assets/select.svg');
+    }
+}
+

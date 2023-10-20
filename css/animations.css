@@ -1,0 +1,37 @@
+:root{
+    --delay: 0s;
+}
+
+@keyframes slide-left-right{
+    from {
+        transform: translateX(-1000px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes opacity-0-to-100{
+    0%{
+        opacity: 0%;
+    }
+    40% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+.slide-left-right{
+    animation: slide-left-right 2s ease-out 1s 1 backwards;
+}
+.opacity-0-to-100{
+    animation: opacity-0-to-100 2s ease-in-out .8s 1 backwards;
+}
+
+.slide-lr-op-0-100{
+    animation: slide-left-right 2s ease var(--delay) 1 backwards, 
+                opacity-0-to-100 2s ease calc(var(--delay) + 0.5s) backwards;
+}
