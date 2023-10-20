@@ -30,7 +30,7 @@ const renderRoot = async (index=0) => {
 
     const Login = 
     `
-    <div class="wrapper">
+    <div class="form-wrapper">
         <section>
                 <div id="form-toggle"><button id="active" name="login-toggle">Login</button><button name="cadastro-toggle">Cadastro</button></div>
         </section>
