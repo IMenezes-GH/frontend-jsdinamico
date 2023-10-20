@@ -9,8 +9,6 @@ const createTaskForm = document.getElementById("create-task-dialog-form");
 const addTodoButton = document.getElementById("add-todo-button");
 const todoListContainer = document.getElementById("todo-list");
 
-const submitTaskButton = document.getElementById("submit-task");
-
 const tasksMain = document.getElementById("tasks-main");
 const asidetaskList = document.getElementById("aside-task-list");
 
@@ -47,7 +45,10 @@ const appendTODO = () => {
     textInput.focus();
 }
 
+// Behavior no botão para adicionar TODOList na modal
 addTodoButton.onclick = () => {appendTODO()}
+
+// Evento executado quando o botão da modal de criar diálogo seja apertado
 createTaskForm.onsubmit = async (ev) => {
     ev.preventDefault();
 
@@ -77,9 +78,6 @@ createTaskForm.onsubmit = async (ev) => {
     <ul>
     </ul>
     `
-                
-    
-    
     
     // ASIDE CONTAINER
     const li = document.createElement('li');
