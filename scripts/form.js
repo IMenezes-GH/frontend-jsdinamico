@@ -13,7 +13,7 @@ const renderRoot = async (index=0) => {
             <section>
 
                 <form id="register-form">
-                    <h2>Cadastro</h2>
+                    <h2>Crie sua conta</h2>
                     
                
                     <input required id="name" name="name" type="text" placeholder="Seu nome completo*" maxlength="40"/>

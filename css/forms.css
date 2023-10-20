@@ -28,16 +28,16 @@
     justify-content: center;
 
     & button{
-        background-color: white;
+        background-color: #121313 ;
         width: 100%;
 
         font-weight: 400;
 
         &#active{
-            color: black;
+            color: white;
         }
         &:not(#active){
-            background-color: rgb(219, 213, 213);
+            background-color: #0d0e0e;
             color: gray;
         }
     }
