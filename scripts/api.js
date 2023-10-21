@@ -10,7 +10,7 @@ export const register = async (data) => {
     const response = await fetch('https://backend-jsdinamico.vercel.app/user', {
         method: 'POST',
         accept: "*/*",
-        // credentials: 'include',
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -26,7 +26,7 @@ export const login = async (data) => {
     const response = await fetch('https://backend-jsdinamico.vercel.app/login', {
         method: 'POST',
         accept: "*/*",
-        // credentials: 'include',
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -47,6 +47,7 @@ export const postUserTask = async (task) => {
     const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}/tasks`, {
         method: 'POST',
         accept: "*/*",
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
