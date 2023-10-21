@@ -4,8 +4,6 @@ import { Task } from "./task.js";
 const names = document.querySelectorAll(".name");
 const usernames = document.querySelectorAll(".username");
 
-// const tester =document.getElementById("tester");
-
 const tasksLength = document.querySelectorAll(".task-length");
 const tasksPending = document.querySelectorAll(".task-length-pending");
 const tasksDone = document.querySelectorAll(".task-length-done");
@@ -16,8 +14,6 @@ const asidetaskList = document.getElementById("aside-task-list");
 const taskmain = document.getElementById("tasks-main");
 const taskcontainerBtn = document.getElementById("open-aside-btn");
 
-
-
 const fetchUserData = async () => {
 
     const username = sessionStorage.getItem("username");
@@ -26,7 +22,6 @@ const fetchUserData = async () => {
     const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}`, {
         method: 'GET',
         accept: "json",
-        // credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
@@ -47,7 +42,6 @@ const fetchUserTasks = async () => {
     const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}/tasks`, {
         method: 'GET',
         accept: "json",
-        // credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
