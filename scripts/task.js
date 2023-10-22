@@ -93,7 +93,8 @@ export class Task {
             editDescription.value = this.description;
             editDue_date.value = this.due_date.toISOString().split('T')[0];
             editTaskComplete.checked = this.completed;
-            
+            editTaskComplete.disabled = this.completed;
+
             const ul = editTaskDialog.querySelector('#edit-todo-list')
 
             this.to_do.forEach((val, index) => {
@@ -115,6 +116,7 @@ export class Task {
 
                 await updateUserTask(this);
                 editTaskDialog.close();
+                location.reload();
             }
             editTaskDialog.showModal();
             
@@ -130,6 +132,7 @@ export class Task {
             })
         }
 
+        this.completed ? article.classList.add('completed') : article.classList.remove('completed');
 
         return article;
     }

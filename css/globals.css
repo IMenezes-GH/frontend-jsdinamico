@@ -78,20 +78,31 @@ input[type="checkbox"]{
 
     &:checked{
         background-color: var(--txt-accent);
-        border: 2px solid var(--txt-accent);
+        border: 1px solid var(--txt-accent);
+        
+        &:disabled{
+            background-color: gray;
+            border: 1px solid rgb(71, 71, 71);
+
+            &::before{
+                bottom: 0.1em;
+                left: 0.05em;
+            }
+        }
         
         &::before{
             content: "✓";
             font-family: 'permanent marker';
             position: relative;
-
+            
             background-image: url('../assets/');
             color: #121313;
-
+            
             font-weight: 900;
             bottom: 0.2em;
             left: -0.05em;
         }
+
     }
 }
 
