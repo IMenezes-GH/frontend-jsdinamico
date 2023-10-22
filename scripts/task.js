@@ -88,12 +88,12 @@ export class Task {
             const editDescription = editTaskDialog.querySelector('#edit-description');
             const editDue_date = editTaskDialog.querySelector('#edit-due-date');
             const editTaskComplete = editTaskDialog.querySelector('#edit-task-done');
-
+           
             editTitle.value = this.title;
             editDescription.value = this.description;
-            editDue_date.value = this.due_date;
+            editDue_date.value = this.due_date.toISOString().split('T')[0];
             editTaskComplete.checked = this.completed;
-
+            
             const ul = editTaskDialog.querySelector('#edit-todo-list')
 
             this.to_do.forEach((val, index) => {
@@ -117,13 +117,19 @@ export class Task {
                 editTaskDialog.close();
             }
             editTaskDialog.showModal();
+            
+            editTaskDialog.onclose = () => { // Reseta modal quando fechada ou cancelada (esc).
+                editTaskDialog.querySelector('form').reset();
+                ul.replaceChildren();
+            }
+
+            editTaskDialog.querySelectorAll('.edit-close').forEach((el) => {
+                el.onclick = () => {
+                    editTaskDialog.close()
+                };
+            })
         }
 
-        editTaskDialog.querySelectorAll('.dialog-close').forEach((el) => {
-            el.onclick = () => {
-                editTaskDialog.close()
-            };
-        })
 
         return article;
     }
