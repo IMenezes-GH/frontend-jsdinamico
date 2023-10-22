@@ -111,7 +111,7 @@ export class Task {
                 this.title = editTitle.value;
                 this.description = editDescription.value;
                 this.due_date = editDue_date.value;
-                this.completed = editTaskComplete.value;
+                this.completed = editTaskComplete.checked;
 
                 await updateUserTask(this);
                 editTaskDialog.close();

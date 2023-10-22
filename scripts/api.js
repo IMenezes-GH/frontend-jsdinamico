@@ -96,7 +96,7 @@ export const updateUserTask = async (task) => {
     })
 
     const tasksData = await response.json();
-
+    console.log(tasksData)
     return tasksData;
 }
 
