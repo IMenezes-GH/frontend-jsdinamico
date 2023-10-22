@@ -1,4 +1,4 @@
-import { taskState, deleteUserTask } from "./api.js";
+import { taskState, deleteUserTask , updateUserTask} from "./api.js";
 const editTaskDialog = document.getElementById('edit-task-dialog');
 
 export class Task{
@@ -13,11 +13,13 @@ export class Task{
         this.creationDate = creationDate || new Date();
         this.due_date = due_date;
         this.completed = completed;
+        console.log(this)
     }
 
     stringify(){
         const stringifiedObject = 
         {
+            _id: this.id,
             title: this.title,
             description: this.description,
             to_do: JSON.stringify(this.to_do),
@@ -67,13 +69,40 @@ export class Task{
             ulTarefa.appendChild(li);
         })
 
-        article.onclick = () => {
-            editTaskDialog.querySelector('#edit-title').value = this.title;
-            editTaskDialog.querySelector('#edit-description').value = this.description;
-            editTaskDialog.querySelector('#edit-due-date').value = this.due_date;
-            editTaskDialog.querySelector('#edit-task-done').checked = this.completed;
-            editTaskDialog.querySelector('#edit-task-done').oninput = (ev) => {
-                this.completed = ev.target.checked;
+        // Abre uma modal ao clicar em uma tarefa, permitindo que ela seja editada
+        article.onclick = (ev) => {
+
+            const editTitle = editTaskDialog.querySelector('#edit-title');
+            const editDescription = editTaskDialog.querySelector('#edit-description');
+            const editDue_date = editTaskDialog.querySelector('#edit-due-date');
+            const editTaskComplete = editTaskDialog.querySelector('#edit-task-done');
+
+            editTitle.value = this.title;
+            editDescription.value = this.description;
+            editDue_date.value = this.due_date;
+            editTaskComplete.checked = this.completed;
+      
+            const ul = editTaskDialog.querySelector('#edit-todo-list')
+            
+            this.to_do.forEach((val , index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<input checked=${val.checked} type="checkbox"><span>${val.objective}</span>`
+                li.querySelector('input').onchange = (ev) => {
+                    this.to_do[index].checked = ev.target.checked;
+                }
+
+                ul.appendChild(li);
+            })
+
+            editTaskDialog.querySelector('#edit-task-dialog-form').onsubmit = async (ev) => {
+                ev.preventDefault();
+                this.title = editTitle.value;
+                this.description = editDescription.value;
+                this.due_date = editDue_date.value;
+                this.completed = editTaskComplete.value;
+
+                await updateUserTask(this);
+                editTaskDialog.close();
             }
             editTaskDialog.showModal();
         }

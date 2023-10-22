@@ -1,4 +1,4 @@
-import { Task } from "./task";
+import { Task } from "./task.js";
 
 export const taskState = {
     taskLength: 0,
@@ -83,6 +83,7 @@ export const updateUserTask = async (task) => {
 
     const username = sessionStorage.getItem("username");
     const token = sessionStorage.getItem("auth");
+    task._id = task.id;
 
     const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}/tasks`, {
         method: 'PATCH',
@@ -96,6 +97,7 @@ export const updateUserTask = async (task) => {
     })
 
     const tasksData = await response.json();
+
     return tasksData;
 }
 
