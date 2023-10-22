@@ -58,10 +58,11 @@ const userdata = await fetchUserData();
 const user = userdata[0];
 
 document.title = `${user.name} | Minhas tarefas`;
+const tarefas = await fetchUserTasks();
 
 export const renderTasks = async () => {
     
-    const tarefas = await fetchUserTasks();
+    const tarefas = JSON.parse(sessionStorage.getItem('tasksdata'));
 
     if (!Array.isArray(tarefas)) return;
     tarefas.forEach((val, index) => {

@@ -1,3 +1,5 @@
+import { Task } from "./task";
+
 export const taskState = {
     taskLength: 0,
     taskDone: 0,
@@ -5,6 +7,11 @@ export const taskState = {
 }
 
 
+/**
+ * Sends a POST request to /user
+ * @param {Object} data 
+ * @returns 
+ */
 export const register = async (data) => {
    
     const response = await fetch('https://backend-jsdinamico.vercel.app/user', {
@@ -21,6 +28,11 @@ export const register = async (data) => {
     return message;
 }
 
+/**
+ * Sends a POST request to /login
+ * @param {Object} data 
+ * @returns 
+ */
 export const login = async (data) => {
 
     const response = await fetch('https://backend-jsdinamico.vercel.app/login', {
@@ -37,6 +49,11 @@ export const login = async (data) => {
     return {message, response};
 }
 
+/**
+ * Sends a POST request to /user/:user/tasks
+ * @param {Task} task 
+ * @returns 
+ */
 export const postUserTask = async (task) => {
 
     const username = sessionStorage.getItem("username");
@@ -54,10 +71,39 @@ export const postUserTask = async (task) => {
     })
 
     const tasksData = await response.json();
-    console.log(tasksData);
     return tasksData;
 }
 
+/**
+ * Sends a PATCH request to /users/:user/tasks
+ * @param {Task} task 
+ * @returns {Object}
+ */
+export const updateUserTask = async (task) => {
+
+    const username = sessionStorage.getItem("username");
+    const token = sessionStorage.getItem("auth");
+
+    const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}/tasks`, {
+        method: 'PATCH',
+        accept: "*/*",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(task)
+    })
+
+    const tasksData = await response.json();
+    return tasksData;
+}
+
+/**
+ * Sends a DELETE request to /user/:user/tasks
+ * @param {Task} task 
+ * @returns 
+ */
 export const deleteUserTask = async (task) => {
 
     const username = sessionStorage.getItem("username");
@@ -78,3 +124,4 @@ export const deleteUserTask = async (task) => {
     const tasksData = await response.json();
     return tasksData;
 }
+

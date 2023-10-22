@@ -71,7 +71,10 @@ export class Task{
             editTaskDialog.querySelector('#edit-title').value = this.title;
             editTaskDialog.querySelector('#edit-description').value = this.description;
             editTaskDialog.querySelector('#edit-due-date').value = this.due_date;
-            editTaskDialog.querySelector('#edit-task-done').value = this.completed;
+            editTaskDialog.querySelector('#edit-task-done').checked = this.completed;
+            editTaskDialog.querySelector('#edit-task-done').oninput = (ev) => {
+                this.completed = ev.target.checked;
+            }
             editTaskDialog.showModal();
         }
 
