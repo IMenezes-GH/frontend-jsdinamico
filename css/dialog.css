@@ -120,3 +120,14 @@ button.dialog-close{
         background-color: transparent;
     }
 }
+
+dialog div:last-child{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dialog-close-button{
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
