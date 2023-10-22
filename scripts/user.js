@@ -55,21 +55,25 @@ const fetchUserTasks = async () => {
 }
 
 const userdata = await fetchUserData();
-const tarefas = await fetchUserTasks();
 const user = userdata[0];
 
 document.title = `${user.name} | Minhas tarefas`;
 
-export const renderTasks = () => {
- 
+export const renderTasks = async () => {
+    
+    const tarefas = await fetchUserTasks();
+
     if (!Array.isArray(tarefas)) return;
-    tarefas.forEach((val) => {
+    tarefas.forEach((val, index) => {
 
         const task = new Task(
             {
+            key: index,
+            id: val._id,
             title: val.title,
             description: val.description,
             type: val.type,
+            due_date: new Date(val.due_date),
             creationDate: new Date(val.creationDate),
             completed: val.completed,
             to_do: val.to_do

@@ -2,6 +2,7 @@
 
 import { taskState, postUserTask } from "./api.js";
 import { renderStats } from "./user.js";
+import { Task } from "./task.js";
 
 const createTaskDialog = document.getElementById("new-task-dialog");
 const createTaskForm = document.getElementById("create-task-dialog-form");
@@ -54,40 +55,24 @@ createTaskForm.onsubmit = async (ev) => {
 
     const title = ev.target.querySelector("#title").value;
     const description = ev.target.querySelector("#description").value;
-    const creation_date = new Date();
     const due_date = ev.target.querySelector("#due-date").value;
     const todos = ev.target.querySelectorAll('li');
     
-    const task = {
+    const task = new Task({
         title,
         description,
         type: 'normal',
-        to_do: []
-    }
+        to_do: [],
+        due_date: new Date(due_date)
+    });
+    
 
-    const tarefa =
-    `
-    <h2 class="task-title">${title} <span>${taskState.taskLength}</span></h2>
-    <hr>
-    <p class="task-description">${description}</p>
-    
-    <p class="task-creation-date">Data de criação: <span class="txt-accent">${creation_date.toLocaleDateString()}</span> às <span class="txt-accent">${new Date().toLocaleTimeString()}</span></p>
-    <p class="task-due-date">Data de prazo: <span class="txt-accent">${due_date}</span></p>
-                
-    <p class="task-objetivos">Objetivos:</p>
-    <ul>
-    </ul>
-    `
-    
     // ASIDE CONTAINER
-    const li = document.createElement('li');
-    li.innerHTML = `<span class="txt-accent txt-bold">${taskState.taskLength} ${title}</span> | <span>${description}</span>`
     
-    const article = document.createElement('article');
-    article.classList.add('task');
-                    
-    article.innerHTML = tarefa;
+    const article = task.renderArticle();
+        
     const ulTarefa = article.querySelector('ul');
+    console.log(ulTarefa);
     todos.forEach((el) => {
         const checked = el.firstChild.checked;
         const objective = el.lastChild.innerText;
@@ -96,18 +81,18 @@ createTaskForm.onsubmit = async (ev) => {
         task.to_do.push({objective, checked})
     })
     
-    
-    task.to_do = JSON.stringify(task.to_do)
-
     tasksMain.appendChild(article);
-    asidetaskList.appendChild(li);
+    asidetaskList.appendChild(task.renderLi());
                 
     todoListContainer.replaceChildren();
+
     ev.target.reset();
+
     taskState.taskLength += 1;
     taskState.taskPending += 1;
 
-    await postUserTask(task);
+
+    await postUserTask(task.stringify());
     renderStats();
 }
             

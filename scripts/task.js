@@ -1,14 +1,29 @@
-import { taskState } from "./api.js";
-
+import { taskState, deleteUserTask } from "./api.js";
 export class Task{
 
-    constructor({title, description, to_do, due_date, type, completed, creationDate}){
+    constructor({key, id, title, description, to_do, due_date, type, completed, creationDate}){
+        this.key = key;
+        this.id = id;
         this.title = title;
         this.description = description || "";
-        this.to_do = to_do;
+        this.to_do = to_do || [];
         this.type = type;
         this.creationDate = creationDate || new Date();
         this.due_date = due_date;
+    }
+
+    stringify(){
+        const stringifiedObject = 
+        {
+            title: this.title,
+            description: this.description,
+            to_do: JSON.stringify(this.to_do),
+            type: this.type,
+            creationDate: this.creationDate,
+            due_date: this.due_date
+        }
+
+        return stringifiedObject;
     }
 
     renderArticle(){
@@ -17,7 +32,7 @@ export class Task{
 
         article.innerHTML =
         `
-        <h2 class="task-title">${this.title} <span>${taskState.taskLength}</span></h2>
+        <h2 class="task-title">${this.title} <button id="new-task-close" class="dialog-close">x</button></h2>
         <hr>
         <p class="task-description">${this.description}</p>
         
@@ -28,6 +43,13 @@ export class Task{
         <ul>
         </ul>
         `
+        const closeButton = article.querySelector("#new-task-close");
+
+        closeButton.addEventListener('click', async () => {
+            await deleteUserTask(this);
+            location.reload(); // PLACEHOLDER, FUTURAMENTE ATUALIZAÇÃO NÃO SERÁ FEITA POR RELOAD
+        })
+
         const ulTarefa = article.querySelector('ul');
         this.to_do.forEach((val) => {
             const checked = val.checked;
@@ -51,4 +73,7 @@ export class Task{
         li.innerHTML = `<span class="txt-accent txt-bold">${taskState.taskLength} ${this.title}</span> | <span>${this.description}</span>`
         return li;
     }
+
+
+
 }
