@@ -1,9 +1,23 @@
-import { taskState, deleteUserTask , updateUserTask} from "./api.js";
+import {
+    taskState,
+    deleteUserTask,
+    updateUserTask
+} from "./api.js";
 const editTaskDialog = document.getElementById('edit-task-dialog');
 
-export class Task{
+export class Task {
 
-    constructor({key, id, title, description, to_do, due_date, type, completed, creationDate}){
+    constructor({
+        key,
+        id,
+        title,
+        description,
+        to_do,
+        due_date,
+        type,
+        completed,
+        creationDate
+    }) {
         this.key = key;
         this.id = id;
         this.title = title;
@@ -13,13 +27,11 @@ export class Task{
         this.creationDate = creationDate || new Date();
         this.due_date = due_date;
         this.completed = completed;
-        console.log(this)
     }
 
-    stringify(){
-        const stringifiedObject = 
-        {
-            _id: this.id,
+    stringify() {
+        const stringifiedObject = {
+            id: this.id,
             title: this.title,
             description: this.description,
             to_do: JSON.stringify(this.to_do),
@@ -31,12 +43,12 @@ export class Task{
         return stringifiedObject;
     }
 
-    renderArticle(){
+    renderArticle() {
         const article = document.createElement('article');
         article.classList.add('task');
 
         article.innerHTML =
-        `
+            `
         <h2 class="task-title">${this.title} <button id="new-task-close" class="dialog-close">x</button></h2>
         <hr>
         <p class="task-description">${this.description}</p>
@@ -62,10 +74,10 @@ export class Task{
 
             const li = document.createElement("li");
             li.innerHTML =
-            `
+                `
             <input checked=${checked} type="checkbox" ><span>${objective}</span>
             `
-    
+
             ulTarefa.appendChild(li);
         })
 
@@ -81,10 +93,10 @@ export class Task{
             editDescription.value = this.description;
             editDue_date.value = this.due_date;
             editTaskComplete.checked = this.completed;
-      
+
             const ul = editTaskDialog.querySelector('#edit-todo-list')
-            
-            this.to_do.forEach((val , index) => {
+
+            this.to_do.forEach((val, index) => {
                 const li = document.createElement('li');
                 li.innerHTML = `<input checked=${val.checked} type="checkbox"><span>${val.objective}</span>`
                 li.querySelector('input').onchange = (ev) => {
@@ -107,12 +119,16 @@ export class Task{
             editTaskDialog.showModal();
         }
 
-        editTaskDialog.querySelectorAll('.dialog-close').forEach((el) => {el.onclick = () => {editTaskDialog.close()};})
+        editTaskDialog.querySelectorAll('.dialog-close').forEach((el) => {
+            el.onclick = () => {
+                editTaskDialog.close()
+            };
+        })
 
         return article;
     }
 
-    renderLi(){
+    renderLi() {
         const li = document.createElement('li');
         li.innerHTML = `<span class="txt-accent txt-bold">${taskState.taskLength} ${this.title}</span> | <span>${this.description}</span>`
         return li;

@@ -83,7 +83,6 @@ export const updateUserTask = async (task) => {
 
     const username = sessionStorage.getItem("username");
     const token = sessionStorage.getItem("auth");
-    task._id = task.id;
 
     const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}/tasks`, {
         method: 'PATCH',
@@ -110,8 +109,7 @@ export const deleteUserTask = async (task) => {
 
     const username = sessionStorage.getItem("username");
     const token = sessionStorage.getItem("auth");
-    const data = {_id: task.id};
-    
+
     const response = await fetch(`https://backend-jsdinamico.vercel.app/user/${username}/tasks`, {
         method: 'DELETE',
         accept: "*/*",
