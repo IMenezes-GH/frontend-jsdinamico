@@ -1,4 +1,4 @@
-#new-task-dialog{
+dialog{
 
     background-color: #121313;
 
@@ -80,7 +80,7 @@
     }
 }
 
-#add-todo-container{
+#add-todo-container, #edit-add-todo-container{
     display: flex;
     justify-content: space-between;
     gap: 1rem;
@@ -90,11 +90,11 @@
     margin-bottom: 1rem;
 }
 
-#add-todo-text{
+#add-todo-text, #edit-add-todo-text{
     flex-grow: 1;
 }
 
-#add-todo-button{
+#add-todo-button, #edit-add-todo-button{
     padding: 0;
     
     min-width: initial;

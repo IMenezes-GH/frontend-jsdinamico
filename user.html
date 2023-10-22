@@ -85,6 +85,30 @@
                     <button type="submit" id="submit-task">Criar tarefa</button>
                 </form>
             </dialog>
+
+            <dialog id="edit-task-dialog" >
+                <header><button class="dialog-close">x</button></header>
+                <h1>Editar tarefa</h1>
+                <form id="edit-task-dialog-form">
+                    <input required id="edit-title" type="text" placeholder="Título*">
+                    <textarea name="description" id="edit-description" cols="30" rows="4" placeholder="Descrição da tarefa"></textarea>
+                        <label for="due-date">Prazo:<input id="edit-due-date" type="date" ></label>
+                        <fieldset form="edit-task-dialog-form">
+                            <div id="edit-add-todo-container">
+                                <input id="edit-add-todo-text" type="text" placeholder="Lista de objetivos dessa tarefa"><button id="edit-add-todo-button" type="button">+</button>
+                            </div>
+                            <ol id="edit-todo-list"></ol>
+                        </fieldset>
+                        <div class="form-row">
+                            <input type="checkbox" name="edit-task-done" id="edit-task-done"> 
+                            <label for="edit-task-done">Tarefa concluída</label>
+                        </div>
+                        <div>
+                            <button class="dialog-close">Cancelar</button>
+                            <button type="submit" id="edit-task-confirm">Confirmar</button>
+                        </div>
+                    </form>
+                </dialog>
             
         </div>
     </body>

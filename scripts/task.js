@@ -1,4 +1,6 @@
 import { taskState, deleteUserTask } from "./api.js";
+const editTaskDialog = document.getElementById('edit-task-dialog');
+
 export class Task{
 
     constructor({key, id, title, description, to_do, due_date, type, completed, creationDate}){
@@ -10,6 +12,7 @@ export class Task{
         this.type = type;
         this.creationDate = creationDate || new Date();
         this.due_date = due_date;
+        this.completed = completed;
     }
 
     stringify(){
@@ -64,6 +67,15 @@ export class Task{
             ulTarefa.appendChild(li);
         })
 
+        article.onclick = () => {
+            editTaskDialog.querySelector('#edit-title').value = this.title;
+            editTaskDialog.querySelector('#edit-description').value = this.description;
+            editTaskDialog.querySelector('#edit-due-date').value = this.due_date;
+            editTaskDialog.querySelector('#edit-task-done').value = this.completed;
+            editTaskDialog.showModal();
+        }
+
+        editTaskDialog.querySelectorAll('.dialog-close').forEach((el) => {el.onclick = () => {editTaskDialog.close()};})
 
         return article;
     }

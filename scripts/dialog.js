@@ -70,9 +70,8 @@ createTaskForm.onsubmit = async (ev) => {
     // ASIDE CONTAINER
     
     const article = task.renderArticle();
-        
     const ulTarefa = article.querySelector('ul');
-    console.log(ulTarefa);
+
     todos.forEach((el) => {
         const checked = el.firstChild.checked;
         const objective = el.lastChild.innerText;

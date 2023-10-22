@@ -228,6 +228,7 @@ h1, h2, h3, p {
     overflow-x:auto;
     
     .task{
+        cursor: pointer;
         background-color: #222020;
         padding: 0 2rem;
         

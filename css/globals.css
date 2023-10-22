@@ -162,3 +162,8 @@ a{
 .txt-bold{
     font-weight: 700;
 }
+
+.form-row{
+    display: flex;
+    gap: .5rem;
+}
